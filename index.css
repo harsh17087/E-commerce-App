@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+
+}
+.logo{
+    width: 4em;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 15px;
+}
+.nav-bar > ul{
+    display: flex;
+    list-style-type: none;
+}
+.nav-bar > ul > li {
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+} */
+
+/* .search-bar{
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.item-card{
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+
+}
+.item-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+} */
+
+/* .itemcard-logo{
+    width: 180px;
+    height: 100px;
+    
+}
+.items-container{
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+/* Shimmer CSS */
+/* body {
+    background: #f5f5f5;
+  }
+  
+  .card {
+      position: relative;
+      -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      background-color: #FFF;
+      border-radius: 6px;
+      height: 300px;
+      overflow: hidden;
+      width: 200px;
+      margin: 10px;
+      
+      
+  }
+    .shimmerBG {
+      animation-duration: 2.2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: shimmer;
+      animation-timing-function: linear;
+      background: #ddd;
+      background: linear-gradient(to right, #F6F6F6 8%, #F0F0F0 18%, #F6F6F6 33%);
+      background-size: 1200px 100%;
+  }
+  
+  
+      .media {
+      height: 200px;
+  }
+  
+  .p-32 {
+      padding: 32px;
+  }
+  
+  .title-line {
+      height: 24px;
+      width: 100%;
+      margin-bottom: 12px;
+      border-radius: 20px;
+  }
+  
+  .content-line {
+      height: 8px;
+      width: 100%;
+      margin-bottom: 16px;
+      border-radius: 8px;
+  }
+    
+    .end {
+        width: 40%;
+      }
+
+  
+  
+  .m-t-24 {
+      margin-top: 24px;
+  }
+
+  .card-shimmer{
+    display: flex;
+    margin-top: 20px;
+  } */
+/* Shimmer CSS */
+
+/* .search-container{
+    display: flex;
+    float: right;
+    margin: 5px;
+} */
