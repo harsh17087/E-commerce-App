@@ -12,12 +12,12 @@ export class UserClass extends Component {
     }
 
     async componentDidMount(){
-        const data = await  fetch("https://api.github.com/users/harsh17087")
-        const json =await data.json()
+        // const data = await  fetch("https://api.github.com/users/harsh17087")
+        // const json =await data.json()
 
-        this.setState({
-            userInfo:json
-        })
+        // this.setState({
+        //     userInfo:json
+        // })
     }
     
     render() {

@@ -11,6 +11,7 @@ import Shimmer from "./components/Shimmer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 // Functional Component starts with Capital letter
 
 // Implementing Lazy loading
@@ -20,9 +21,10 @@ const Contact = lazy(() => import("./components/Contact"));
 const AppMain = () => {
   return (
     <Provider store={appStore}>
-      <div className="app">
+      <div className="app flex flex-col h-screen">
         <Header />
-        <Outlet />
+        <div className="flex-grow"><Outlet /></div>
+        <Footer/>
       </div>
     </Provider>
   );

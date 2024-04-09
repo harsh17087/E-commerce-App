@@ -9,17 +9,17 @@ const Header= ()=>{
 
     // Subscribing to the cart store
     return(
-        <div className="flex justify-between mb-2 shadow-md bg-gray-200">
+        <div className=" h-[80px] flex justify-between mb-2 shadow-md bg-gray-200">
             <div className="flex items-center">
                 <img className="w-20 rounded-full m-2" src="https://tse2.mm.bing.net/th/id/OIP.Jc4_fewy2DM4SNzlqWDRYAHaHa?rs=1&pid=ImgDetMain"></img>
             </div>
             <div className="flex items-center">
                 <ul className="flex p-4 m-4">
-                    <li className="px-4 text-xl">Online {activeStatus?"🟢":"🔴"}</li>
-                    <li className="px-4 text-xl"><Link to=''>Home</Link></li>
-                    <li className="px-4 text-xl"><Link to='/about'>About</Link></li>
-                    <li className="px-4 text-xl"><Link to='/contact'>Contact</Link></li>
-                    <li className="px-4 text-2xl"><Link className="font-bold" to='/cart'>🛒{cartItems.length}</Link></li>
+                    <li className="px-4 text-xl ">Online {activeStatus?"🟢":"🔴"}</li>
+                    <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to=''>Home</Link></li>
+                    <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/about'>About</Link></li>
+                    <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/contact'>Contact</Link></li>
+                    <li className="px-4 text-2xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link className="font-bold" to='/cart'>🛒{cartItems.length}</Link></li>
                 </ul>
             </div>
         </div>
