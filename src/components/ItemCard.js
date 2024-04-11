@@ -27,8 +27,8 @@ const ItemCard = (props) => {
             <span>{rating.count} 👨‍👩‍👦‍👦</span>
         </div>
         <br/>
-        <div className="flex space-x-7 m-2">
-            <button onClick={()=>handleAddItem(itemData)} className="btn btn-outline-primary btn-sm">➕</button>
+        <div className="flex space-x-2 m-2">
+            <button onClick={()=>handleAddItem(itemData)} className="btn btn-outline-primary btn-sm">Add➕</button>
             <Link className="text-green-500 hover:underline" to={'/products/' + itemId}>Show more...</Link>
         </div>
         
