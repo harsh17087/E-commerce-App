@@ -107,7 +107,7 @@ const Body = () => {
             {/* <ItemCard itemData={item}/> */}
 
             {item.rating.rate > 4.5 ? (
-              <BestSellerProduct itemData={item} />
+              <BestSellerProduct itemData={item} itemId={item.id} />
             ) : (
               <ItemCard itemData={item} itemId={item.id} />
             )}

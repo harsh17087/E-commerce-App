@@ -39,7 +39,9 @@ const ItemCard = (props) => {
 
 // Best Seller Products
 
-export const BestSellerProductCard = (ItemCard) => {
+export const BestSellerProductCard = (props) => {
+  
+  
   return (props) => {
     return (
       <div>
