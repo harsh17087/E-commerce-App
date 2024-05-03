@@ -26,9 +26,9 @@ const Header= ()=>{
                     <li className="px-4 text-2xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link className="font-bold" to='/cart'>🛒{cartItems.length}</Link></li>
                     <li className="px-4 rounded-lg hover:bg-green-200 hover:shadow-inner group  relative dropdown  cursor-pointer  tracking-wide">
                         <PersonIcon/><ArrowDropDownIcon/>
-                        <div class="mt-1 group-hover:block dropdown-menu ml-[-20px] absolute hidden h-auto rounded-lg">
+                        <div class="group-hover:block dropdown-menu absolute hidden h-auto rounded-lg">
                         <ul class="bg-white w-32">
-                            <Link><li class="px-1 py-1 hover:bg-slate-300 hover:font-bold">Your Profile</li></Link>
+                            <Link><li class="px-1 hover:bg-slate-300 hover:font-bold">Your Profile</li></Link>
                             <Link><li class="px-1 py-1 hover:bg-slate-300 hover:font-bold">Order History</li></Link>
                             <Link><li class="px-1 py-1 hover:bg-slate-300 hover:font-bold">Logout</li></Link>
                         </ul>
