@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../utils/constant.js";
+import { API_URL, MY_API_URL } from "../utils/constant.js";
 import Shimmer from "./Shimmer";
 import ItemCard, { BestSellerProductCard } from "./ItemCard";
 import { Link, createBrowserRouter } from "react-router-dom";
@@ -32,11 +32,15 @@ const Body = () => {
   }
 
   const fetchData = async () => {
-    const data = await fetch(API_URL);
-    const json = await data.json();
-    // console.log(json);
-    setlistOfProducts(json);
-    setfilteredProducts(json);
+    // const data = await fetch(API_URL);   // comes from fake store API
+    // const json = await data.json();
+
+    const data = await fetch(MY_API_URL);
+    const json = await data.json()
+    // console.log(json.data)
+    
+    setlistOfProducts(json.data);
+    setfilteredProducts(json.data);
   };
 
   if (listOfProducts.length === 0) {
@@ -101,15 +105,15 @@ const Body = () => {
         {filteredProducts.map((item) => (
           <div
             style={{ textDecoration: "none", color: "black" }}
-            key={item.id}
-            to={"/products/" + item.id}
+            key={item._id}
+            to={"/items/" + item._id}
           >
             {/* <ItemCard itemData={item}/> */}
 
             {item.rating.rate > 4.5 ? (
-              <BestSellerProduct itemData={item} itemId={item.id} />
+              <BestSellerProduct itemData={item} itemId={item._id} />
             ) : (
-              <ItemCard itemData={item} itemId={item.id} />
+              <ItemCard itemData={item} itemId={item._id} />
             )}
           </div>
         ))}

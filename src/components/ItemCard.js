@@ -1,14 +1,33 @@
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { SELLER_API_URL } from "../utils/constant";
+import { useEffect, useState } from "react";
 
-const ItemCard = (props) => {
+const ItemCard =(props) => {
   // Destructuring
   const { itemData,itemId } = props;
-  const { title, price, image, rating } = itemData;
+  const { title, price, image, rating, sellerId } = itemData;
+  
+  const [shopName, setShopName] = useState("")
 
   const dispatch = useDispatch()  
   
+  const sellerURL = SELLER_API_URL + '/' + sellerId
+  
+  
+  useEffect(()=>{
+    getShopName()
+  })
+  
+  const getShopName = ()=>{
+    axios.get(sellerURL).then((res)=>{
+      const shop_name =  res?.data.data.name
+      setShopName(shop_name)
+    }).catch((err)=>{})
+  }
+
   const handleAddItem=(item) =>{
         // Dispatch an action
         dispatch(addItem(item))
@@ -30,6 +49,10 @@ const ItemCard = (props) => {
         <div className="flex space-x-2 m-2">
             <button onClick={()=>handleAddItem(itemData)} className="btn btn-outline-primary btn-sm">Add➕</button>
             <Link className="text-green-500 hover:underline" to={'/products/' + itemId}>Show more...</Link>
+        </div>
+        <div>
+          
+          <span>Sold by 🛍 <b className="font-bold ">{shopName.charAt(0).toUpperCase() + shopName.slice(1)}</b></span>
         </div>
         
       </div>

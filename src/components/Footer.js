@@ -29,8 +29,8 @@ const Footer = () => {
                 </div>
                 <span className='font-bold m-2 p-2 underline'>Copyright &#xA9; Reserved 2024</span>
             </div>
-            <div className='grid-cols-4'>
-                <button onClick={scrollToTop()}>Go to Top</button>
+            <div className='p-2 m-2 grid-cols-4'>
+                <button className='hover:underline font-bold' onClick={scrollToTop}>Go to Top</button>
             </div>
         </div>
     )

@@ -19,7 +19,7 @@ const ProductDetail = () => {
     // }
 
     const prodDetail = useProductDetail(prodId) // Instead of using above code, we've created custom hooks
-  
+    console.log(prodDetail)
     if(prodDetail===null)return <Shimmer/>
 
     const {title,price,description,category,image,rating} = prodDetail

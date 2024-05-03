@@ -12,6 +12,13 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
+import Seller from "./components/Seller";
+import SellerProfile from "./components/SellerProfile";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import SellerProfileDetails from "./components/SellerProfileDetails";
+import SellerAddProduct from "./components/SellerAddProduct";
+import SellerProfileAnalytics from "./components/SellerProfileAnalytics";
+import SellerProfileDashboard from "./components/SellerProfileDashboard";
 // Functional Component starts with Capital letter
 
 // Implementing Lazy loading
@@ -23,8 +30,10 @@ const AppMain = () => {
     <Provider store={appStore}>
       <div className="app flex flex-col h-screen">
         <Header />
-        <div className="flex-grow"><Outlet /></div>
-        <Footer/>
+        <div className="flex-grow">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
     </Provider>
   );
@@ -37,12 +46,20 @@ const appRouter = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "", element: <Body /> },
-      { path: "/cart", element: <Cart/> },
+      { path: "/cart", element: <Cart /> },
       {
         path: "/about",
         element: (
           <Suspense fallback={<Shimmer />}>
             <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/seller",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Seller />
           </Suspense>
         ),
       },
@@ -53,9 +70,19 @@ const appRouter = createBrowserRouter([
             <Contact />
           </Suspense>
         ),
-        
       },
       { path: "/products/:prodId", element: <ProductDetail /> },
+    ],
+  },
+  {
+    path: "/sellerprofile/:id/",
+    element: <ProtectedRoute RoutingComponent={SellerProfile} />,
+    children: [
+      { path: "", element: <SellerProfileDashboard /> },
+      { path: "dashboard", element: <SellerProfileDashboard /> },
+      { path: "sellerdetail", element: <SellerProfileDetails /> },
+      { path: "addproduct", element: <SellerAddProduct /> },
+      { path: "analytics", element: <SellerProfileAnalytics /> },
     ],
   },
 ]);

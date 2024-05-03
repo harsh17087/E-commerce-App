@@ -15,8 +15,8 @@ const Cart = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   //new
-  console.log(cartItems);
-  console.log(totalAmount, totalQuantity);
+  // console.log(cartItems);
+  // console.log(totalAmount, totalQuantity);
 
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ const Cart = () => {
       <div className="grid grid-flow-col">
         <div className="grid-cols-8">
           {cartItems.map((items) => (
-            <div className="space-y-1 border border-black m-2 p-2 w-[800px] h-[150px] bg-slate-200 shadow-lg">
+            <div key={items._id} className="space-y-1 border border-black m-2 p-2 w-[800px] h-[150px] bg-slate-200 shadow-lg">
               <div className="">
                 <h2 className="font-bold">{items.title}</h2>
                 <img

@@ -10,14 +10,15 @@ const cartSlice = createSlice({
     reducers: {
         addItem:(state,action)=>{
             //new
-            const cartItem= state.items.find((item) => item.id === action.payload.id);
-            
+            const cartItem= state.items.find((item) => item._id === action.payload._id);
+            console.log(current(state.items))
             if(cartItem) {
                 cartItem.cartQuantity ++;
                 // console.log(cartItem.cartQuantity)
                 
             }else{
                 const tempProduct = {...action.payload, cartQuantity:1};
+                console.log(tempProduct)
                 state.items.push(tempProduct)
                 // console.log(action.payload.id)
                 // console.log(current(state.items))
@@ -33,30 +34,30 @@ const cartSlice = createSlice({
             //     item => item.id!==action.payload
             // )
             // state.items=inCartItems
-            const itemId = action.payload.id
-            state.items = state.items.filter(item=>item.id!==itemId)
+            const itemId = action.payload._id
+            state.items = state.items.filter(item=>item._id!==itemId)
             //new
 
             // state.items.pop()
         },
 
         decreaseCartQuantity:(state,action)=>{
-            const cartItem= state.items.find((item) => item.id === action.payload.id);
+            const cartItem= state.items.find((item) => item._id === action.payload._id);
             
             console.log(cartItem)
             if(cartItem?.cartQuantity>1){
                 cartItem.cartQuantity=cartItem.cartQuantity-1
                 // console.log(cartItem?.cartQuantity)
             }else{
-                const itemId = action.payload.id
-                state.items = state.items.filter(item=>item.id!==itemId)
+                const itemId = action.payload._id
+                state.items = state.items.filter(item=>item._id!==itemId)
 
             }
         },
 
         increaseCartQuantity(state,action) {
             const item= state.items.find(
-                cartItem => cartItem.id === action.payload.id
+                cartItem => cartItem._id === action.payload._id
             )
                 item.cartQuantity++       
         },
