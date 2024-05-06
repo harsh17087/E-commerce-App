@@ -1,9 +1,18 @@
 import axios from 'axios'
 import React from 'react'
-import { useRef } from 'react'
+import { useRef ,useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {MY_API_URL} from '../utils/constant'
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const SellerAddProduct = () => {
+    
+    const [alignment, setAlignment] = useState('instock');
+
+    const handleChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+        console.log(alignment)
+    };   
     
     const navigate = useNavigate()
     
@@ -27,7 +36,8 @@ const SellerAddProduct = () => {
             rating:{
                 rate:0,
                 count:0
-            }
+            },
+            stock:alignment
         }
         axios.post(MY_API_URL,prodData).then(()=>{
             window.alert("Product added successfully")
@@ -59,6 +69,22 @@ const SellerAddProduct = () => {
                     <div className='p-2 m-1 flex items-center'>
                         <p className='w-3/12 text-xl'>Product Image URL</p>
                         <input type='text' placeholder='www.cloudinary.com/842gd.png' ref={image} className='w-9/12 p-2 m-2 focus:outline-none border border-gray-600 rounded-lg focus:shadow-lg'/>
+                    </div>
+                    <div className='p-2 m-1 flex items-center'>
+                        <p className='w-3/12 text-xl'>Stock Update</p>
+                    <ToggleButtonGroup
+                        color="primary"
+                        value={alignment}
+                        exclusive
+                        onChange={handleChange}
+                        aria-label="Platform"
+                        className='p-2 m-1'
+                    >
+                        
+                    <ToggleButton className='text-blue-800' value="instock">In Stock</ToggleButton>
+                    <ToggleButton className='text-red-800' value="outstock">Out of Stock</ToggleButton>
+                    
+                    </ToggleButtonGroup>
                     </div>
                     <div className='text-center'>
                         <button type='submit' onClick={(e)=>handleSubmit(e)} className='w-4/12 p-2 m-2 rounded-full bg-blue-400 hover:bg-blue-600'>Submit</button>

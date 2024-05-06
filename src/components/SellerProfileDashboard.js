@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { MY_API_URL } from "../utils/constant";
 import axios from "axios";
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
@@ -121,7 +121,7 @@ const SellerProfileDashboard = () => {
                   <td>{item.price}</td>
                   <td className="space-x-2">
                     <button onClick={()=>{handleShow(item)}} className="btn btn-outline-primary"><VisibilityIcon/></button>
-                    <button className="btn btn-outline-warning"><EditNoteOutlinedIcon/></button>
+                    <Link to={'../edititem' + '/'+item._id} className="btn btn-outline-warning"><EditNoteOutlinedIcon/></Link>
                     <button onClick={()=>{setDeleteModal(true);setDeleteModal(item)}} className="btn btn-outline-danger"><DeleteOutlineOutlinedIcon/></button>
                   </td>
                 </tr>
@@ -147,6 +147,7 @@ const SellerProfileDashboard = () => {
           <label>Category : <strong>{show.category}</strong></label><br/>
           <label>Average Rating : <strong>{show.rating?.rate}</strong></label><br/>
           <label>People rated : <strong>{show.rating?.count}</strong></label><br/>
+          <label>Stock Update : <strong>{show.stock==="instock"?<span>Available ✔</span>:<span>Out of stock ❌</span>}</strong></label><br/>
 
         </Modal.Body>
         <Modal.Footer>

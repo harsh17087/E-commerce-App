@@ -23,7 +23,7 @@ const SellerLogin = () => {
             const sellerData = res.data
             const data = sellerData.data.filter((val)=>{return val.email===email})
             temp= data[0]._id
-            navigate('/sellerprofile/'+ temp)
+            navigate('/sellerprofile/'+ temp + '/dashboard')
         }).catch((err)=>{})}
 
     const handleSubmitData=(event)=>{   

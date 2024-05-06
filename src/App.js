@@ -19,6 +19,7 @@ import SellerProfileDetails from "./components/SellerProfileDetails";
 import SellerAddProduct from "./components/SellerAddProduct";
 import SellerProfileAnalytics from "./components/SellerProfileAnalytics";
 import SellerProfileDashboard from "./components/SellerProfileDashboard";
+import EditItem from "./components/EditItem";
 // Functional Component starts with Capital letter
 
 // Implementing Lazy loading
@@ -83,6 +84,7 @@ const appRouter = createBrowserRouter([
       { path: "sellerdetail", element: <SellerProfileDetails /> },
       { path: "addproduct", element: <SellerAddProduct /> },
       { path: "analytics", element: <SellerProfileAnalytics /> },
+      { path: "edititem/:id", element: <EditItem/> },
     ],
   },
 ]);
