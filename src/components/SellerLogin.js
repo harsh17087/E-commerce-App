@@ -10,12 +10,18 @@ const SellerLogin = () => {
 
     const [isSignIn,setIsSignIn] = useState(true)
     const [errorMessage,setErrorMessage] = useState("")
+    const [closeError, setCloseError] = useState(true);
+
+  
     const email = useRef(null)
     const password = useRef(null)
     const name = useRef(null)
     
     const ToggleSignIn=()=>{
         setIsSignIn(!isSignIn)
+    }
+    const toggleCloseError=()=>{
+        setErrorMessage("")
     }
 
     const getSellerIdAndNavigate = (email)=>{
@@ -30,6 +36,7 @@ const SellerLogin = () => {
         event.preventDefault()
         const msg = dataValidate(email.current.value,password.current.value,isSignIn)
         setErrorMessage(msg)
+        setTimeout(()=>{toggleCloseError()},2000)
         if(!isSignIn && errorMessage===null){
             
             const user={
@@ -88,7 +95,7 @@ const SellerLogin = () => {
                     {!isSignIn && <input ref={name} className='m-3 p-3 rounded-lg bg-slate-200' type='text' placeholder='Shop Name'/>}
                     <input ref={email} className='p-3 m-3 rounded-lg bg-slate-200 ' type='text' placeholder='E-mail'/>
                     <input ref={password} className='p-3 m-3 rounded-lg bg-slate-200 ' type='password' placeholder='Password'/>
-                    <p className="font-bold text-lg p-1 m-1 text-red-700">{errorMessage} </p>
+                    <p className="font-bold text-lg p-1 m-1 text-red-700">{closeError && errorMessage} </p>
                     <button className="bg-blue-300 hover:bg-blue-600 m-3 p-3 rounded-lg text-xl" onClick={(e)=>handleSubmitData(e)} type="submit">{isSignIn?"Sign In":"Sign Up"}</button>   
                 </form>
                 {

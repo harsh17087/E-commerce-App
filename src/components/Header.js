@@ -1,14 +1,27 @@
 import  {Link}  from "react-router-dom"
 import useActiveStatus from "../utils/useActiveStatus.js"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { useEffect, useState } from "react"
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import LogoutIcon from '@mui/icons-material/Logout';
+import {removeUser} from "../utils/userSlice.js";
+import { useNavigate } from "react-router-dom";
 const Header= ()=>{
-    
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const activeStatus=useActiveStatus()
     const cartItems = useSelector((store)=>store.cart.items)
+    const userLoggedIn = useSelector((store)=>store.user)
+
+    const handleLogOut = (event)=>{
+        event.preventDefault()
+        if(window.confirm("You're leaving too soon, confirm to log out")){
+            dispatch(removeUser())
+            sessionStorage.clear()
+            window.alert("Successfully logged out")
+            navigate('/')
+        }
+    }
 
     // Subscribing to the cart store
     return(
@@ -24,17 +37,16 @@ const Header= ()=>{
                     <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/about'>About</Link></li>
                     <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/contact'>Contact</Link></li>
                     <li className="px-4 text-2xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link className="font-bold" to='/cart'>🛒{cartItems.length}</Link></li>
-                    <li className="px-4 rounded-lg hover:bg-green-200 hover:shadow-inner group  relative dropdown  cursor-pointer  tracking-wide">
+                    {userLoggedIn? <li className="px-4 rounded-lg hover:bg-green-200 hover:shadow-inner group  relative dropdown  cursor-pointer  tracking-wide">
                         <PersonIcon/><ArrowDropDownIcon/>
                         <div class="group-hover:block dropdown-menu absolute hidden h-auto rounded-lg ml-[-20px] min-w-fit">
                         <ul class="bg-white w-32">
-                            <Link><li class="px-1 hover:bg-slate-300 hover:font-bold">Your Profile</li></Link>
+                            <Link to='user'><li class="px-1 hover:bg-slate-300 hover:font-bold">Your Profile</li></Link>
                             <Link><li class="px-1 py-1 hover:bg-slate-300 hover:font-bold">Order History</li></Link>
-                            <Link><li class="px-1 py-1 hover:bg-slate-300 hover:font-bold">Logout</li></Link>
+                            <li class="px-1 py-1 hover:bg-red-500 hover:font-bold"><button onClick={(e)=>handleLogOut(e)}>Logout</button></li>
                         </ul>
                         </div>
-
-                    </li>
+                    </li>:<li className="px-4 text-amber-950 text-xl font-bold rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/login'>Login</Link></li>}
                 </ul>
             </div>
         </div>

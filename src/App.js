@@ -20,6 +20,10 @@ import SellerAddProduct from "./components/SellerAddProduct";
 import SellerProfileAnalytics from "./components/SellerProfileAnalytics";
 import SellerProfileDashboard from "./components/SellerProfileDashboard";
 import EditItem from "./components/EditItem";
+import UserLogin from "./components/UserLogin";
+import UserProfile from "./components/UserProfile";
+import EditUser from "./components/EditUser";
+import AddressHandler from "./components/AddressHandler";
 // Functional Component starts with Capital letter
 
 // Implementing Lazy loading
@@ -48,6 +52,10 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "", element: <Body /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/login", element: <UserLogin/> },
+      { path: "/user", element: <UserProfile/>},
+      { path: "/user/edit", element: <EditUser/>},
+      { path: "/user/editaddress", element: <AddressHandler/>},
       {
         path: "/about",
         element: (

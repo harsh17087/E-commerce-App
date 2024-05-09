@@ -1,7 +1,7 @@
 import axios from "axios"
 import { SELLER_API_URL } from "./constant"
 
-export const dataValidate = (email,password,isSignIn)=>{
+export const dataValidate = (email,password)=>{
 
     const isEmailValid = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email)
     const isPassValid = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/.test(password) 
