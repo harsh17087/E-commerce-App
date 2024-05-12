@@ -33,7 +33,7 @@ const Header= ()=>{
                 <ul className="flex p-4 m-4 items-center">
                     <li className="px-4 text-xl ">{activeStatus?"Online🟢":"Offline🔴"}</li>
                     <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner "><Link to='/'>Shop</Link></li>
-                    <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/seller'>Seller</Link></li>
+                    {!userLoggedIn && <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/seller'>Seller</Link></li>}
                     <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/about'>About</Link></li>
                     <li className="px-4 text-xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link to='/contact'>Contact</Link></li>
                     <li className="px-4 text-2xl rounded-lg hover:bg-green-200 hover:shadow-inner"><Link className="font-bold" to='/cart'>🛒{cartItems.length}</Link></li>

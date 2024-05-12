@@ -6,9 +6,13 @@ import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Button,Modal } from 'react-bootstrap';
+import { useDeleteItemMutation, useGetItemsQuery } from "../utils/itemAPI.js";
 
 const SellerProfileDashboard = () => {
   const { id } = useParams();
+  const {data, error, isLoading} = useGetItemsQuery()
+
+  const [deleteItem] = useDeleteItemMutation()
 
   const [listOfProducts, setlistOfProducts] = useState([{}]);
   const [filteredProducts, setfilteredProducts] = useState([{}]);
@@ -32,13 +36,14 @@ const SellerProfileDashboard = () => {
 
   useEffect(() => {
     fetchData();
-  }, [searchText,filteredProducts]);
+  }, [searchText,data,filteredProducts]);
 
   const fetchData = async () => {
-    const data = await fetch(MY_API_URL);
-    const json = await data.json();
+    // const data = await fetch(MY_API_URL);
+    // const json = await data.json();
 
-    setlistOfProducts(json.data);
+    // setlistOfProducts(json.data);
+    !isLoading && setlistOfProducts(data?.data)
   };
 
   const toggleShowProducts = () => {
@@ -46,15 +51,19 @@ const SellerProfileDashboard = () => {
   };
 
   const handleSubmit = () => {
+    fetchData()
     const filteredlist = listOfProducts.filter((item) => item.sellerId === id);
     setfilteredProducts(filteredlist);
     toggleShowProducts();
     console.log(filteredProducts);
   };
 
-  const handleDelete=()=>{
-    axios.delete(MY_API_URL + '/' + deleteModal._id).then(()=>{
-    }).catch((err)=>{console.log(err)})
+  const handleDelete=async()=>{
+    // axios.delete(MY_API_URL + '/' + deleteModal._id).then(()=>{
+    // }).catch((err)=>{console.log(err)})
+    const id=deleteModal._id
+    console.log(id)
+    await deleteItem(id)
   }
 
   return (

@@ -6,8 +6,11 @@ import { MY_API_URL } from "../utils/constant";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Button,Modal } from 'react-bootstrap';
+import { useUpdateItemMutation } from "../utils/itemAPI";
 const EditItem = () => {
-    const [show, setShow] = useState(false);
+  const [updateItem,isSuccess] = useUpdateItemMutation()  
+  const [show, setShow] = useState(false);
+  const { id } = useParams();
 
     const handleClose = () =>{ 
         setShow(false);  
@@ -27,6 +30,7 @@ const EditItem = () => {
   const navigate = useNavigate();
 
   const [prod, setProduct] = useState({
+    id:id,
     title: "",
     price: "",
     description: "",
@@ -35,7 +39,6 @@ const EditItem = () => {
     stock: "",
   });
 
-  const { id } = useParams();
 
   useEffect(() => {
     axios
@@ -55,11 +58,16 @@ const EditItem = () => {
     setProduct({ ...prod, [name]: value });
   };
 
-  const editProduct=(event)=>{
+  const editProduct=async(event)=>{
     handleClose()
-    axios.put(MY_API_URL+'/'+id,prod).then(()=>{
-        navigate('../dashboard')
-    })
+    // axios.put(MY_API_URL+'/'+id,prod).then(()=>{
+    //     navigate('../dashboard')
+    // })
+    console.log(prod)
+    await updateItem(prod)
+    if(isSuccess){
+      navigate('../dashboard')
+    }
   }
 
   return (

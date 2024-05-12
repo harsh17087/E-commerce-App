@@ -5,8 +5,11 @@ import ItemCard, { BestSellerProductCard } from "./ItemCard";
 import { Link, createBrowserRouter } from "react-router-dom";
 import useActiveStatus from "../utils/useActiveStatus.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { useGetItemsQuery } from "../utils/itemAPI.js";
 const Body = () => {
+  const {data, error, isLoading} = useGetItemsQuery()
+  
+
   const [listOfProducts, setlistOfProducts] = useState([]);
   // Copy of products list for filtering purpose
   const [filteredProducts, setfilteredProducts] = useState([]);
@@ -25,7 +28,8 @@ const Body = () => {
     return()=>{
       clearTimeout(timer)
     }
-  }, [searchText]);
+  }, [searchText,data]);
+  
 
   const displaySearch=()=>{
     console.log("API CALL FOR - " + searchText)
@@ -35,17 +39,17 @@ const Body = () => {
     // const data = await fetch(API_URL);   // comes from fake store API
     // const json = await data.json();
 
-    const data = await fetch(MY_API_URL);
-    const json = await data.json()
+    // const data = await fetch(MY_API_URL);
+    // const json = await data.json()
     // console.log(json.data)
     
-    setlistOfProducts(json.data);
-    setfilteredProducts(json.data);
+    // setlistOfProducts(json.data);
+    // setfilteredProducts(json.data);
+    if(!isLoading){
+      setlistOfProducts(data?.data)
+      setfilteredProducts(data?.data)
+    }
   };
-
-  if (listOfProducts.length === 0) {
-    return <Shimmer />;
-  }
 
   // check online status from useActiveStatus custom hook
   if (activeStatus === false)
@@ -102,7 +106,7 @@ const Body = () => {
       </div>
 
       <div className="flex flex-wrap">
-        {filteredProducts.map((item) => (
+        {isLoading?<Shimmer/>: filteredProducts.map((item) => (
           <div
             style={{ textDecoration: "none", color: "black" }}
             key={item._id}

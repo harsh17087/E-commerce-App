@@ -85,7 +85,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/sellerprofile/:id/",
-    element: <ProtectedRoute RoutingComponent={SellerProfile} />,
+    element: <Provider store={appStore}><ProtectedRoute RoutingComponent={SellerProfile} /></Provider>,
     children: [
       { path: "", element: <SellerProfileDashboard /> },
       { path: "dashboard", element: <SellerProfileDashboard /> },

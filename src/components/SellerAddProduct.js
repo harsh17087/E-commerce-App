@@ -5,8 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {MY_API_URL} from '../utils/constant'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { useAddItemMutation } from '../utils/itemAPI'
 const SellerAddProduct = () => {
-    
+    const [addItem, isSuccess] = useAddItemMutation()
     const [alignment, setAlignment] = useState('instock');
 
     const handleChange = (event, newAlignment) => {
@@ -24,7 +25,7 @@ const SellerAddProduct = () => {
 
     const {id} = useParams()
     console.log(id)
-    const handleSubmit=(event)=>{
+    const handleSubmit= async (event)=>{
         event.preventDefault()
         const prodData = {
             sellerId:id,
@@ -39,10 +40,16 @@ const SellerAddProduct = () => {
             },
             stock:alignment
         }
-        axios.post(MY_API_URL,prodData).then(()=>{
+
+        await addItem(prodData)
+        if(isSuccess){
+            navigate('../dashboard')
+        }
+
+        /*axios.post(MY_API_URL,prodData).then(()=>{
             window.alert("Product added successfully")
             navigate('../dashboard')
-        }).catch((err)=>{})
+        }).catch((err)=>{})*/
     }
     
     return (
